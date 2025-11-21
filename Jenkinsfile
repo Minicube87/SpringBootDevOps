@@ -47,14 +47,16 @@ pipeline{
         stage("Upload"){
           steps{
             script {
-                def WAR_FILE = sh(
-                    script: "ls ./target/*.war",
+                def warName = sh(
+                    script: "ls ./target/*.war | xargs -n1 basename",
                     returnStdout: true
                 ).trim()
             
+                def warFile = "./target/${warName}"
+            
             sh """
             curl -u "$creds_USR:$creds_PSW" --upload-file "$dep_file" "$url/$dep_file"
-            curl -u "$creds_USR:$creds_PSW" --upload-file "${WAR_FILE}" "$url/${WAR_FILE}" """
+            curl -u "$creds_USR:$creds_PSW" --upload-file "${warFile}" "$url/${warName}" """
             }
           }
         }
