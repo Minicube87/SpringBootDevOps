@@ -11,7 +11,7 @@ pipeline{
 
         stage("Cleanup"){
             steps{
-                sh "rm -rf ./* .*"
+                sh "rm -rf ./* ./.*"
             }
         }
 
