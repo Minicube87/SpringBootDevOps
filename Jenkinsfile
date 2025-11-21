@@ -51,10 +51,11 @@ pipeline{
                     script: "ls ./target/*.war",
                     returnStdout: true
                 ).trim()
-            }
+            
             sh """
             curl -u "$creds_USR:$creds_PSW" --upload-file "$dep_file" "$url/$dep_file"
             curl -u "$creds_USR:$creds_PSW" --upload-file "${WAR_FILE}" "$url/${WAR_FILE}" """
+            }
           }
         }
 
