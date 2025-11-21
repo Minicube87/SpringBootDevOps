@@ -25,6 +25,18 @@ pipeline{
             sh "mvn clean package -P${params.ENVIRONMENT} -DskipTests=${params.SKIP_TESTS}"
           }
         }
+
+        stage("Dependencies"){
+          steps{
+            sh "mvn dependency:tree"
+          }
+        }
+
+        stage("Create file Dependency Tree"){
+          steps{
+            sh "mvn dependency:tree -DoutpuleFIle=dependency-tree.txt -DoutputType=text"
+          }
+        }
     }
 
 
@@ -33,7 +45,7 @@ pipeline{
             echo "================"
         }
         success{
-            cleanWs()
+            //cleanWs()
         }
         failure{
             echo "========pipeline execution failed========"
