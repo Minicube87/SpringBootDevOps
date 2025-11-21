@@ -48,7 +48,7 @@ pipeline{
           steps{
             script {
                 def WAR_FILE = sh(
-                    script: "ls target/*.war",
+                    script: "ls ./target/*.war",
                     returnStdout: true
                 ).trim()
             }
