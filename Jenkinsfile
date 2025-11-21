@@ -8,7 +8,7 @@ pipeline{
 
 
     stages{
-        
+
         stage("Compile"){
           steps{
             sh "mvn compile"
@@ -19,7 +19,7 @@ pipeline{
 
     post{
         always{
-            sh "rm -rf ./* ./.*"
+            cleanWs()
         }
         success{
             echo "========pipeline executed successfully ========"
