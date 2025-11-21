@@ -34,7 +34,7 @@ pipeline{
 
         stage("Create file Dependency Tree"){
           steps{
-            sh "mvn dependency:tree -DoutpuleFIle=dependency-tree.txt -DoutputType=text"
+            sh "mvn dependency:tree -DoutputFile=dependency-tree.txt -DoutputType=text"
           }
         }
     }
