@@ -41,6 +41,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-tomcat-runtime</artifactId>
+			<version>4.0.0-RC2</version>
 			<scope>provided</scope>
 		</dependency>
 
