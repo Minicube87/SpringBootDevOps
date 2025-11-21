@@ -8,7 +8,7 @@ pipeline{
 
     environment{
         creds=credentials('nexus_kurs3')
-        url='https://nexus.skyered-devops.de/repository/Kurs3-Raw'
+        url='https://nexus.skyered-devops.de/repository/Kurs3-Raw/group'
         dep_file='dependency-tree.txt'
     }
 
