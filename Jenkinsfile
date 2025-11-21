@@ -44,23 +44,14 @@ pipeline{
           }
         }
 
-        stage("Upload") {
-            steps {
-                script {
-                    def warFile = sh(
-                        script: "ls target/*.war",
-                        returnStdout: true
-                    ).trim()
-
-                    sh """
-                        curl -u ${creds_USR}:${creds_PSW} --upload-file ${dep_file} ${url}/${dep_file}
-                        curl -u ${creds_USR}:${creds_PSW} --upload-file ${warFile} ${url}/$(basename ${warFile})
-                    """
-                }
-            } 
+        stage("Upload"){
+          steps{
+            sh """ WAR_FILE=\$(ls target/*.war)
+            curl -u `$creds_USR:$creds_PSW` --upload-file `$dep_file` `$url/$dep_file`
+            curl -u `$creds_USR:$creds_PSW` --upload-file `$WAR_FILE` `$url/$WAR_FILE` """
+          }
         }
-
-
+        
     }
 
 
