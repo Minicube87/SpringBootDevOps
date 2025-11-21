@@ -45,7 +45,7 @@ pipeline{
             echo "================"
         }
         success{
-            //cleanWs()
+            echo "sucess" //cleanWs()
         }
         failure{
             echo "========pipeline execution failed========"
