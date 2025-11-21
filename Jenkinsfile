@@ -9,6 +9,7 @@ pipeline{
     environment{
         creds=credentials('nexus_kurs3')
         url='https://nexus.skyered-devops.de/repository/Kurs3-Raw'
+        dep_file='dependency-tree.txt'
     }
 
     parameters {
@@ -39,19 +40,20 @@ pipeline{
 
         stage("Create file Dependency Tree"){
           steps{
-            sh "mvn dependency:tree -DoutputFile=dependency-tree.txt -DoutputType=text"
+            sh "mvn dependency:tree -DoutputFile='$dep_file' -DoutputType=text"
           }
         }
 
         stage("Upload"){
           steps{
-            sh"""
-            DEP_FILE=dependency-tree.txt
-            WAR_FILE=$(ls target/*.war)
+            sh'''
 
-            'curl -u "$creds_USR:$creds_PSW" --upload-file "$DEP_FILE" "$url/$DEP_FILE" '
-            'curl -u "$creds_USR:$creds_PSW" --upload-file "$WAR_FILE" "$url/$WAR_FILE" '
-            """
+            WAR_FILE=$ls target/*.war
+
+            curl -u "$creds_USR:$creds_PSW" --upload-file "$dep_file" "$url/$dep_file" 
+            curl -u "$creds_USR:$creds_PSW" --upload-file "$WAR_FILE" "$url/$WAR_FILE" 
+
+            '''
           }
         }
 
