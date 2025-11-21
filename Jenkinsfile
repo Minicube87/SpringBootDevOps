@@ -8,13 +8,7 @@ pipeline{
 
 
     stages{
-
-     /* stage("Cleanup"){
-            steps{
-                sh "rm -rf ./* ./.*"
-            }
-        } */
-
+        
         stage("Compile"){
           steps{
             sh "mvn compile"
@@ -25,7 +19,7 @@ pipeline{
 
     post{
         always{
-            echo "========always========"
+            sh "rm -rf ./* ./.*"
         }
         success{
             echo "========pipeline executed successfully ========"
