@@ -48,7 +48,7 @@ pipeline{
           steps{
             sh """WAR_FILE=\$(ls target/*.war)
             curl -u '$creds_USR:$creds_PSW' --upload-file '$dep_file' '$url/$dep_file'
-            curl -u '$creds_USR:$creds_PSW' --upload-file '${WAR_FILE}' '$url/${WAR_FILE}' """
+            curl -u '$creds_USR:$creds_PSW' --upload-file '$WAR_FILE' '$url/$WAR_FILE' """
           }
         }
 
