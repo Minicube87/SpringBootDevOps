@@ -112,4 +112,35 @@
 
 	</build>
 
+	<profiles>
+
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env.name>DEV</env.name>
+				<packageName>DevOpsSpringBootGroup-dev</packageName>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<properties>
+				<env.name>TEST</env.name>
+				<packageName>DevOpsSpringBootGroup-test</packageName>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>prod</id>
+			<properties>
+				<env.name>PROD</env.name>
+				<packageName>DevOpsSpringBootGroup-prod</packageName>
+			</properties>
+		</profile>
+
+	</profiles>
+
 </project>

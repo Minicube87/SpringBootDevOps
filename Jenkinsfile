@@ -19,10 +19,10 @@ pipeline{
 
     post{
         always{
-            cleanWs()
+            echo "================"
         }
         success{
-            echo "========pipeline executed successfully ========"
+            cleanWs()
         }
         failure{
             echo "========pipeline execution failed========"

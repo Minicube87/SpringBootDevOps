@@ -1,0 +1,4 @@
+app:
+  profile: dev
+  test:
+    enabled: false
