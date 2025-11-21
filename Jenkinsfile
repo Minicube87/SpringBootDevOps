@@ -9,11 +9,11 @@ pipeline{
 
     stages{
 
-        stage("Cleanup"){
+     /* stage("Cleanup"){
             steps{
                 sh "rm -rf ./* ./.*"
             }
-        }
+        } */
 
         stage("Compile"){
           steps{
